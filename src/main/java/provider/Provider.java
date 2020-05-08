@@ -10,8 +10,13 @@ import provider.api.HelloService;
 import provider.impl.HelloServiceImpl;
 import register.RemoteMapRegister;
 
+/**
+ * Privider 服务提供方
+ */
 public class Provider {
-
+    /**
+     * Main 方法
+     */
     public static void main(String[] args) {
         //1.本地注册  存储格式：{暴露出去的服务名, 实现类}
         LocalRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
