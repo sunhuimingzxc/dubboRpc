@@ -16,20 +16,21 @@ import java.util.concurrent.*;
 
 /**
  * @author tanghf
- * @className protocol.dubbo.NettyClient.java
+ * @className protocal.dubbo.NettyClient.java
  * @createTime 2019/8/23 10:22
  */
 public class NettyClient<T> {
 
     private static NettyClientHandler client;
 
-    private static ExecutorService executor = new ThreadPoolExecutor(5, 10, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue());
+    //private static ExecutorService executor = new ThreadPoolExecutor(5, 10, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
+    private static ExecutorService executor = Executors.newCachedThreadPool();
 
     public void start(String hostname, Integer port){
         client = new NettyClientHandler();
 
-        NioEventLoopGroup group = new NioEventLoopGroup();
         Bootstrap b = new Bootstrap();
+        NioEventLoopGroup group = new NioEventLoopGroup();
         b.group(group)
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.TCP_NODELAY, true)
@@ -44,7 +45,7 @@ public class NettyClient<T> {
                     }
                 });
         try {
-            b.connect("localhost", 8080).sync();
+            b.connect(hostname, port).sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

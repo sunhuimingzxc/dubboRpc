@@ -1,6 +1,7 @@
 package protocol.dubbo;
 
 import framework.Invocation;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.concurrent.Future;
@@ -9,7 +10,7 @@ import java.util.concurrent.Callable;
 
 /**
  * @author tanghf
- * @className protocol.dubbo.NettyClientHandler.java
+ * @className protocal.dubbo.NettyClientHandler.java
  * @createTime 2019/8/23 10:22
  */
 public class NettyClientHandler extends ChannelInboundHandlerAdapter implements Callable{
